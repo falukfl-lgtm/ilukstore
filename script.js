@@ -10,29 +10,29 @@ const IMGS = {
 const QRIS_IMG = 'qris.jpg';
 
 const GAMES = {
-  freefire:     { name:'FREE FIRE',         sub:'Battle Royale · Garena',  currency:'Diamond',         img:'freefire',
-    items:[{a:50,p:8000,b:''},{a:70,p:10000,b:''},{a:100,p:15000,b:''},{a:140,p:20000,b:''},
-           {a:210,p:30000,b:''},{a:280,p:40000,b:''},{a:355,p:50000,b:''},
-           {a:720,p:100000,b:''},{a:1450,p:200000,b:''}]},
-  mobilelegend: { name:'MOBILE LEGENDS',    sub:'MOBA · Moonton',          currency:'Diamond',         img:'mobilelegend',
-    items:[{a:5,p:3000,b:'5 + 0 Bonus'},{a:10,p:6000,b:'10 + 0 Bonus'},{a:12,p:15000,b:'11 + 1 Bonus'},{a:19,p:29000,b:'17 + 2 Bonus'},
-           {a:28,p:43000,b:'25 + 3 Bonus'},{a:44,p:65000,b:'40 + 4 Bonus'},{a:50,p:86000,b:'50 + 0 Bonus'},{a:59,p:129000,b:'53 + 6 Bonus'},
-           {a:85,p:172000,b:'77 + 8 Bonus'},{a:113,p:215000,b:'102 + 11 Bonus'},{a:170,p:344000,b:'154 + 16 Bonus'},{a:296,p:517000,b:'256 + 40 Bonus'}]},
-  pubg:         { name:'PUBG MOBILE',       sub:'Battle Royale · Tencent', currency:'UC',              img:'pubg',
-    items:[{a:60,p:15000,b:''},{a:180,p:43000,b:''},{a:325,p:75000,b:''},{a:660,p:149000,b:'+10'},
-           {a:1800,p:390000,b:'+100'},{a:3850,p:799000,b:'+350'}]},
-  genshin:      { name:'GENSHIN IMPACT',    sub:'RPG · HoYoverse',         currency:'Genesis Crystal', img:'genshin',
-    items:[{a:60,p:15000,b:''},{a:330,p:75000,b:''},{a:1090,p:215000,b:'+110'},
-           {a:2240,p:430000,b:'+210'},{a:3880,p:720000,b:'+650'},{a:8080,p:1430000,b:'+1600'}]},
-  valorant:     { name:'VALORANT',          sub:'FPS · Riot Games',        currency:'VP',              img:'valorant',
-    items:[{a:475,p:55000,b:''},{a:1000,p:110000,b:''},{a:2050,p:210000,b:''},
-           {a:3650,p:370000,b:''},{a:5350,p:530000,b:''},{a:11000,p:1050000,b:''}]},
-  honkai:       { name:'HONKAI: STAR RAIL', sub:'RPG · HoYoverse',         currency:'Oneiric Shard',   img:'honkai',
-    items:[{a:60,p:15000,b:''},{a:330,p:75000,b:''},{a:1090,p:215000,b:'+110'},
-           {a:2240,p:430000,b:'+210'},{a:3880,p:720000,b:'+650'}]},
+  freefire:     { name:'FREE FIRE',         sub:'Battle Royale · Garena',  currency:'Diamond',         img:'freefire',     vipCode:'FF',
+    items:[{a:50,p:8000,v:'ff-50-diamond'},{a:70,p:10000,v:'ff-70-diamond'},{a:100,p:15000,v:'ff-100-diamond'},{a:140,p:20000,v:'ff-140-diamond'},
+           {a:210,p:30000,v:'ff-210-diamond'},{a:280,p:40000,v:'ff-280-diamond'},{a:355,p:50000,v:'ff-355-diamond'},
+           {a:720,p:100000,v:'ff-720-diamond'},{a:1450,p:200000,v:'ff-1450-diamond'}]},
+  mobilelegend: { name:'MOBILE LEGENDS',    sub:'MOBA · Moonton',          currency:'Diamond',         img:'mobilelegend', vipCode:'ML',
+    items:[{a:5,p:3000,v:'ml-5-diamond'},{a:12,p:15000,v:'ml-12-diamond'},{a:28,p:43000,v:'ml-28-diamond'},
+           {a:44,p:65000,v:'ml-44-diamond'},{a:59,p:129000,v:'ml-59-diamond'},{a:85,p:172000,v:'ml-85-diamond'},
+           {a:170,p:344000,v:'ml-170-diamond'},{a:296,p:517000,v:'ml-296-diamond'}]},
+  pubg:         { name:'PUBG MOBILE',       sub:'Battle Royale · Tencent', currency:'UC',              img:'pubg',         vipCode:'PUBG',
+    items:[{a:60,p:15000,v:'pubg-60-uc'},{a:180,p:43000,v:'pubg-180-uc'},{a:325,p:75000,v:'pubg-325-uc'},
+           {a:660,p:149000,v:'pubg-660-uc'},{a:1800,p:390000,v:'pubg-1800-uc'}]},
+  genshin:      { name:'GENSHIN IMPACT',    sub:'RPG · HoYoverse',         currency:'Genesis Crystal', img:'genshin',      vipCode:'GENSHIN',
+    items:[{a:60,p:15000,v:'genshin-60-crystal'},{a:330,p:75000,v:'genshin-330-crystal'},
+           {a:1090,p:215000,v:'genshin-1090-crystal'},{a:2240,p:430000,v:'genshin-2240-crystal'}]},
+  valorant:     { name:'VALORANT',          sub:'FPS · Riot Games',        currency:'VP',              img:'valorant',     vipCode:'VALORANT',
+    items:[{a:475,p:55000,v:'valorant-475-vp'},{a:1000,p:110000,v:'valorant-1000-vp'},
+           {a:2050,p:210000,v:'valorant-2050-vp'},{a:3650,p:370000,v:'valorant-3650-vp'}]},
+  honkai:       { name:'HONKAI: STAR RAIL', sub:'RPG · HoYoverse',         currency:'Oneiric Shard',   img:'honkai',       vipCode:'HONKAI',
+    items:[{a:60,p:15000,v:'honkai-60-shard'},{a:330,p:75000,v:'honkai-330-shard'},
+           {a:1090,p:215000,v:'honkai-1090-shard'},{a:2240,p:430000,v:'honkai-2240-shard'}]},
 };
 
-const state = { user:'', umur:'', game:'', gameId:'', item:null };
+const state = { user:'', umur:'', game:'', gameId:'', zoneId:'', item:null };
 
 const fmt   = n => 'Rp ' + n.toLocaleString('id-ID');
 const genId = () => 'ASB-' + Date.now().toString(36).toUpperCase() + '-' + Math.random().toString(36).slice(2,5).toUpperCase();
@@ -95,16 +95,15 @@ function loadTopup() {
   document.getElementById('gh-name').textContent = g.name;
   document.getElementById('gh-sub').textContent  = g.sub;
 
-   const grid = document.getElementById('nominal-grid');
-   grid.innerHTML = '';
-    g.items.forEach(item => {
+  const grid = document.getElementById('nominal-grid');
+  grid.innerHTML = '';
+  g.items.forEach(item => {
     const d = document.createElement('div');
     d.className = 'nom-card';
     d.innerHTML = `
       <div class="diam">${item.a.toLocaleString('id-ID')}</div>
       <div class="dlabel">💎 ${g.currency}</div>
       <div class="dprice">${fmt(item.p)}</div>
-      ${item.b ? `<div class="dbonus">+${item.b} </div>` : ''}
       <div class="chk">✓</div>`;
     d.onclick = () => selectNom(d, item);
     grid.appendChild(d);
@@ -135,6 +134,9 @@ function loadPayment() {
   state.item   = JSON.parse(sessionStorage.getItem('item') || 'null');
   if (!state.user || !state.game || !state.item) return window.location.href = 'index.html';
 
+  const el = document.getElementById('user-display');
+  if (el) el.textContent = state.user;
+
   const g = GAMES[state.game];
   document.getElementById('pay-buyer').textContent  = state.user;
   document.getElementById('pay-game').textContent   = g.name;
@@ -144,14 +146,55 @@ function loadPayment() {
   document.getElementById('qris-img').src = QRIS_IMG;
 }
 
-function sudahBayar() {
+/* ── PROSES TOP UP OTOMATIS ── */
+async function sudahBayar() {
   const trxId = genId();
   const now   = new Date();
   const tgl   = now.toLocaleDateString('id-ID',{day:'2-digit',month:'long',year:'numeric'})
               + ' ' + now.toLocaleTimeString('id-ID',{hour:'2-digit',minute:'2-digit'});
-  sessionStorage.setItem('trxId', trxId);
-  sessionStorage.setItem('tgl', tgl);
-  window.location.href = 'bukti.html';
+
+  state.user   = sessionStorage.getItem('user') || '';
+  state.game   = sessionStorage.getItem('game') || '';
+  state.gameId = sessionStorage.getItem('gameId') || '';
+  state.item   = JSON.parse(sessionStorage.getItem('item') || 'null');
+
+  const g = GAMES[state.game];
+
+  // Tampilkan loading
+  const btn = document.getElementById('btn-paid');
+  btn.textContent = '⏳ Memproses...';
+  btn.disabled = true;
+
+  try {
+    // Kirim order ke Netlify Function → VIP Reseller
+    const res = await fetch('/.netlify/functions/create-payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        buyerName:   state.user,
+        productCode: state.item.v,
+        gameId:      state.gameId,
+        zoneId:      state.zoneId || '',
+        itemName:    state.item.a + ' ' + g.currency,
+        price:       state.item.p
+      })
+    });
+
+    const data = await res.json();
+
+    sessionStorage.setItem('trxId', trxId);
+    sessionStorage.setItem('tgl', tgl);
+    sessionStorage.setItem('topupStatus', data.success ? 'success' : 'pending');
+    sessionStorage.setItem('topupMessage', data.message || '');
+
+    window.location.href = 'bukti.html';
+
+  } catch (err) {
+    btn.textContent = '✅ SAYA SUDAH BAYAR';
+    btn.disabled = false;
+    toast('❌ Gagal memproses. Coba lagi!');
+    console.error(err);
+  }
 }
 
 /* ── BUKTI ── */
@@ -163,6 +206,7 @@ function loadBukti() {
   state.item   = JSON.parse(sessionStorage.getItem('item') || 'null');
   const trxId  = sessionStorage.getItem('trxId') || '-';
   const tgl    = sessionStorage.getItem('tgl') || '-';
+  const topupStatus = sessionStorage.getItem('topupStatus') || 'pending';
   if (!state.user || !state.item) return window.location.href = 'index.html';
 
   const g = GAMES[state.game];
@@ -174,13 +218,25 @@ function loadBukti() {
   document.getElementById('bk-item').textContent   = state.item.a.toLocaleString('id-ID') + ' ' + g.currency;
   document.getElementById('bk-harga').textContent  = fmt(state.item.p);
 
+  // Update status berdasarkan hasil top up
+  const statusEl = document.querySelector('.bv.ok');
+  if (statusEl) {
+    if (topupStatus === 'success') {
+      statusEl.textContent = '✅ LUNAS – TOP UP DIPROSES';
+      statusEl.style.color = '#2ed573';
+    } else {
+      statusEl.textContent = '⏳ LUNAS – MENUNGGU KONFIRMASI';
+      statusEl.style.color = '#ffa502';
+    }
+  }
+
   const msg = encodeURIComponent(
     `🧾 *BUKTI PEMBAYARAN – ASSABIL STORE*\n\n` +
     `No. Transaksi: ${trxId}\nTanggal: ${tgl}\n\n` +
     `👤 Nama: ${state.user} (Umur: ${state.umur})\n` +
     `🎮 Game: ${g.name}\n🆔 ID Game: ${state.gameId}\n` +
-    `💎 Item: ${state.item.a.toLocaleString('id-ID')} ${g.currency}${state.item.b?' + '+state.item.b+' Bonus':''}\n` +
-    `💰 Total: ${fmt(state.item.p)}\n\n✅ Pembayaran via QRIS\nStatus: LUNAS – Mohon segera diproses 🙏`
+    `💎 Item: ${state.item.a.toLocaleString('id-ID')} ${g.currency}\n` +
+    `💰 Total: ${fmt(state.item.p)}\n\n✅ Pembayaran via QRIS\nStatus: LUNAS`
   );
   document.getElementById('btn-wa-send').href = 'https://wa.me/6283802687742?text=' + msg;
 }
@@ -191,5 +247,6 @@ function goHome() {
   sessionStorage.removeItem('item');
   sessionStorage.removeItem('trxId');
   sessionStorage.removeItem('tgl');
+  sessionStorage.removeItem('topupStatus');
   window.location.href = 'games.html';
 }
