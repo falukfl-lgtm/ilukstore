@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assabil Store – Login</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap login-page">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="brand">Assabil Store</div>
+      <div class="sub">Pulsa &amp; Internet · Top Up Game</div>
+    </div>
+    <label for="inp-nama">Nama / Username</label>
+    <input type="text" id="inp-nama" placeholder="Masukkan nama kamu..." autocomplete="off">
+    <label for="inp-umur">Umur</label>
+    <input type="number" id="inp-umur" placeholder="Umur kamu..." min="1">
+    <button class="btn-red" onclick="doLogin()">MASUK</button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+<script>
+  document.getElementById('inp-nama').addEventListener('keydown', e => { if(e.key==='Enter') document.getElementById('inp-umur').focus(); });
+  document.getElementById('inp-umur').addEventListener('keydown', e => { if(e.key==='Enter') doLogin(); });
+</script>
+</body>
+</html>

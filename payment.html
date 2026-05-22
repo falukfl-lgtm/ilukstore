@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assabil Store – Pembayaran</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  .upload-box {
+    border: 2px dashed var(--border); border-radius: 10px;
+    padding: 24px 16px; text-align: center; cursor: pointer;
+    margin-bottom: 14px; transition: all .3s; background: var(--card);
+  }
+  .upload-box:hover { border-color: var(--red); background: rgba(232,0,28,0.05); }
+  .upload-box .upload-icon { font-size: 32px; margin-bottom: 8px; }
+  .upload-box .upload-text { font-size: 14px; font-weight: 700; color: var(--text); letter-spacing: 1px; }
+  .upload-box .upload-sub { font-size: 11px; color: var(--muted); margin-top: 4px; }
+  .btn-paid-on {
+    width: 100%; background: linear-gradient(135deg, #1a7a1a, #0d5c0d); border: none;
+    border-radius: 8px; padding: 15px; color: #fff; font-family: 'Orbitron', monospace;
+    font-size: 12px; font-weight: 700; letter-spacing: 2px; cursor: pointer; transition: all .3s;
+  }
+  .btn-paid-on:hover { opacity: .9; transform: translateY(-1px); }
+  .btn-paid-off {
+    width: 100%; background: #2a2a3a; border: none;
+    border-radius: 8px; padding: 15px; color: #6b6b8a; font-family: 'Orbitron', monospace;
+    font-size: 12px; font-weight: 700; letter-spacing: 2px; cursor: not-allowed;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand">ASSABIL STORE</div>
+    <div class="user">Pembayaran</div>
+  </div>
+  <div class="pay-wrap">
+    <button class="btn-back" onclick="window.location.href='topup.html'" style="margin-bottom:18px;">← Kembali</button>
+    <div class="pay-title">SCAN QRIS</div>
+    <div class="pay-sub">Bayar dengan e-wallet / m-banking apapun</div>
+
+    <div class="order-box">
+      <div class="order-row"><span class="k">Pembeli</span><span class="v" id="pay-buyer">-</span></div>
+      <div class="order-row"><span class="k">Game</span><span class="v" id="pay-game">-</span></div>
+      <div class="order-row"><span class="k">ID Game</span><span class="v" id="pay-gameid">-</span></div>
+      <div class="order-row"><span class="k">Item</span><span class="v" id="pay-item">-</span></div>
+      <div class="order-row"><span class="k">Total</span><span class="v big" id="pay-price">-</span></div>
+    </div>
+
+    <div class="qris-label">📷 Scan QR dengan aplikasi pembayaranmu</div>
+    <div class="qris-box"><img id="qris-img" src="" alt="QRIS"></div>
+    <div class="qris-info" style="color:#e8001c;font-weight:700;font-size:12px;">
+      NMID: ID1026496243225 · A01 · Mohamad Arsyad Assabil
+    </div>
+
+    <!-- UPLOAD BUKTI -->
+    <div style="font-size:12px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin:18px 0 10px;">
+      Upload Bukti Transfer
+    </div>
+    <div class="upload-box" id="upload-box" onclick="document.getElementById('inp-bukti').click()">
+      <div class="upload-icon">📎</div>
+      <div class="upload-text">Tap untuk upload bukti transfer</div>
+      <div class="upload-sub">JPG / PNG</div>
+      <input type="file" id="inp-bukti" accept="image/*" style="display:none" onchange="onBuktiUpload(event)">
+    </div>
+
+    <!-- PREVIEW -->
+    <div id="preview-wrap" style="display:none;margin-bottom:16px;">
+      <div style="background:#0a1f0a;border:1px solid #2ed573;border-radius:10px;padding:12px;text-align:center;">
+        <div style="font-size:11px;color:#2ed573;font-weight:700;letter-spacing:1px;margin-bottom:8px;">✅ BUKTI TERUPLOAD</div>
+        <img id="preview-img" src="" alt="Bukti Transfer" style="max-width:100%;max-height:220px;border-radius:8px;display:block;margin:0 auto;">
+        <div id="preview-name" style="font-size:11px;color:#2ed573;margin-top:8px;"></div>
+      </div>
+      <button onclick="hapusBukti()" style="width:100%;margin-top:8px;background:none;border:1px solid #ff4444;border-radius:8px;padding:9px;color:#ff4444;font-size:12px;cursor:pointer;font-family:'Rajdhani',sans-serif;font-weight:700;letter-spacing:1px;">
+        🗑️ Hapus &amp; Ganti Bukti
+      </button>
+    </div>
+
+    <!-- TOMBOL -->
+    <button class="btn-paid-off" id="btn-paid" onclick="sudahBayar()">✅ SAYA SUDAH BAYAR</button>
+    <div id="paid-hint" style="text-align:center;font-size:11px;color:var(--muted);margin-top:8px;letter-spacing:1px;">
+      ⬆️ Upload bukti transfer dulu
+    </div>
+  </div>
+</div>
+<script src="script.js"></script>
+<script>
+loadPayment();
+
+function onBuktiUpload(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+  reader.onload = function(ev) {
+    // Simpan data bukti
+    sessionStorage.setItem('buktiName', file.name);
+    sessionStorage.setItem('buktiData', ev.target.result);
+
+    // Tampilkan preview
+    document.getElementById('preview-img').src = ev.target.result;
+    document.getElementById('preview-name').textContent = file.name;
+    document.getElementById('preview-wrap').style.display = 'block';
+    document.getElementById('upload-box').style.display = 'none';
+
+    // Aktifkan tombol bayar (hijau)
+    const btn = document.getElementById('btn-paid');
+    btn.className = 'btn-paid-on';
+    btn.onclick = sudahBayar;
+    document.getElementById('paid-hint').style.display = 'none';
+  };
+  reader.readAsDataURL(file);
+}
+
+function hapusBukti() {
+  sessionStorage.removeItem('buktiName');
+  sessionStorage.removeItem('buktiData');
+  document.getElementById('preview-wrap').style.display = 'none';
+  document.getElementById('upload-box').style.display = 'block';
+  document.getElementById('inp-bukti').value = '';
+
+  // Nonaktifkan tombol lagi
+  const btn = document.getElementById('btn-paid');
+  btn.className = 'btn-paid-off';
+  document.getElementById('paid-hint').style.display = 'block';
+}
+</script>
+</body>
+</html>

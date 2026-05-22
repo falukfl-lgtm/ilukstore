@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assabil Store – Pilih Game</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand">ASSABIL STORE</div>
+    <div class="user">Halo, <span id="user-display">-</span></div>
+  </div>
+  <div class="games-wrap">
+    <div class="section-title">
+      <h2>PILIH <span>GAME</span></h2>
+      <p>Klik game untuk mulai top up</p>
+    </div>
+    <div class="games-grid" id="games-grid"></div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+<script>loadGames();</script>
+</body>
+</html>

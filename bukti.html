@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assabil Store – Bukti Transaksi</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand">ASSABIL STORE</div>
+    <div class="user">Bukti Transaksi</div>
+  </div>
+  <div class="bukti-wrap">
+    <div class="ico-ok">✅</div>
+    <div class="bukti-title">PEMBAYARAN BERHASIL!</div>
+    <div class="bukti-sub">Terima kasih! Admin akan segera memproses pesananmu.</div>
+
+    <div class="bukti-card">
+      <div class="bukti-head">🧾 BUKTI TRANSAKSI – ASSABIL STORE</div>
+      <div class="bukti-row"><span class="bk">No. Transaksi</span><span class="bv" id="bk-no">-</span></div>
+      <div class="bukti-row"><span class="bk">Tanggal</span><span class="bv" id="bk-tgl">-</span></div>
+      <div class="bukti-row"><span class="bk">Nama Pembeli</span><span class="bv" id="bk-nama">-</span></div>
+      <div class="bukti-row"><span class="bk">Game</span><span class="bv" id="bk-game">-</span></div>
+      <div class="bukti-row"><span class="bk">ID Game</span><span class="bv" id="bk-gameid">-</span></div>
+      <div class="bukti-row"><span class="bk">Item</span><span class="bv" id="bk-item">-</span></div>
+      <div class="bukti-row"><span class="bk">Total Bayar</span><span class="bv" id="bk-harga">-</span></div>
+      <div class="bukti-row"><span class="bk">Status</span><span class="bv ok">✅ LUNAS – MENUNGGU PROSES</span></div>
+    </div>
+
+    <!-- PREVIEW BUKTI TRANSFER -->
+    <div id="bukti-transfer-wrap" style="display:none;margin-bottom:16px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">Bukti Transfer Kamu</div>
+      <div style="background:#0a1f0a;border:1px solid #2ed573;border-radius:10px;padding:12px;text-align:center;">
+        <img id="bukti-transfer-img" src="" alt="Bukti Transfer" style="max-width:100%;max-height:200px;border-radius:8px;display:block;margin:0 auto;">
+      </div>
+    </div>
+
+    <!-- TOMBOL DOWNLOAD -->
+    <a id="btn-download" href="#" download="bukti-transfer.jpg"
+      style="display:none;align-items:center;justify-content:center;gap:9px;width:100%;
+      background:linear-gradient(135deg,#1a3a7a,#0d1f5c);border:none;border-radius:8px;
+      padding:14px;color:#fff;font-family:'Orbitron',monospace;font-size:11px;font-weight:700;
+      letter-spacing:1px;text-decoration:none;margin-bottom:10px;">
+      ⬇️ DOWNLOAD BUKTI TRANSFER
+    </a>
+
+    <a class="btn-wa" id="btn-wa-send" href="#" target="_blank">
+      📲 KIRIM RINCIAN KE ADMIN VIA WA
+    </a>
+    <div style="text-align:center;font-size:11px;color:var(--muted);margin-bottom:14px;line-height:1.6;">
+      Setelah klik WA, kirim juga <strong style="color:var(--text);">foto bukti transfer</strong> yang sudah didownload ke chat admin ya!
+    </div>
+
+    <button class="btn-home" onclick="goHome()">🏠 Kembali ke Beranda</button>
+  </div>
+</div>
+<script src="script.js"></script>
+<script>
+loadBukti();
+
+// Tampilkan bukti transfer jika ada
+const buktiData = sessionStorage.getItem('buktiData');
+const buktiName = sessionStorage.getItem('buktiName') || 'bukti-transfer.jpg';
+
+if (buktiData) {
+  // Preview
+  document.getElementById('bukti-transfer-img').src = buktiData;
+  document.getElementById('bukti-transfer-wrap').style.display = 'block';
+
+  // Tombol download
+  const dlBtn = document.getElementById('btn-download');
+  dlBtn.href = buktiData;
+  dlBtn.download = buktiName;
+  dlBtn.style.display = 'flex';
+
+  // Auto download
+  setTimeout(() => {
+    const a = document.createElement('a');
+    a.href = buktiData;
+    a.download = buktiName;
+    a.click();
+  }, 800);
+}
+</script>
+</body>
+</html>

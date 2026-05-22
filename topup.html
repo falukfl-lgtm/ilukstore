@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assabil Store – Top Up</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <div class="topbar">
+    <div class="brand">ASSABIL STORE</div>
+    <div class="user">Halo, <span id="user-display">-</span></div>
+  </div>
+  <div class="game-header">
+    <img id="gh-img" src="" alt="">
+    <div>
+      <h2 id="gh-name">-</h2>
+      <p id="gh-sub">-</p>
+    </div>
+  </div>
+  <div class="topup-wrap">
+    <label>ID / Username Game Kamu</label>
+    <input type="text" id="inp-game-id" placeholder="Masukkan ID game kamu...">
+    <div class="nom-section-title">Pilih Nominal</div>
+    <div class="nominal-grid" id="nominal-grid"></div>
+    <div class="row-btns">
+      <button class="btn-back" onclick="window.location.href='games.html'">← Kembali</button>
+      <button class="btn-bayar" id="btn-bayar" onclick="doBayar()" disabled>LANJUT BAYAR →</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+<script src="script.js"></script>
+<script>loadTopup();</script>
+</body>
+</html>
