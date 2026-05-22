@@ -160,41 +160,28 @@ async function sudahBayar() {
 
   const g = GAMES[state.game];
 
-  // Tampilkan loading
-  const btn = document.getElementById('btn-paid');
-  btn.textContent = '⏳ Memproses...';
-  btn.disabled = true;
+  // Simpan order ke localStorage untuk panel admin
+  const orders = JSON.parse(localStorage.getItem('assabil_orders') || '[]');
+  orders.push({
+    trxId:       trxId,
+    tgl:         tgl,
+    user:        state.user,
+    game:        g.name,
+    gameId:      state.gameId,
+    zoneId:      state.zoneId || '',
+    item:        state.item.a.toLocaleString('id-ID') + ' ' + g.currency,
+    price:       fmt(state.item.p),
+    rawPrice:    state.item.p,
+    productCode: state.item.v,
+    status:      'pending'
+  });
+  localStorage.setItem('assabil_orders', JSON.stringify(orders));
 
-  try {
-    // Kirim order ke Netlify Function → VIP Reseller
-    const res = await fetch('/.netlify/functions/create-payment', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        buyerName:   state.user,
-        productCode: state.item.v,
-        gameId:      state.gameId,
-        zoneId:      state.zoneId || '',
-        itemName:    state.item.a + ' ' + g.currency,
-        price:       state.item.p
-      })
-    });
+  sessionStorage.setItem('trxId', trxId);
+  sessionStorage.setItem('tgl', tgl);
+  sessionStorage.setItem('topupStatus', 'pending');
 
-    const data = await res.json();
-
-    sessionStorage.setItem('trxId', trxId);
-    sessionStorage.setItem('tgl', tgl);
-    sessionStorage.setItem('topupStatus', data.success ? 'success' : 'pending');
-    sessionStorage.setItem('topupMessage', data.message || '');
-
-    window.location.href = 'bukti.html';
-
-  } catch (err) {
-    btn.textContent = '✅ SAYA SUDAH BAYAR';
-    btn.disabled = false;
-    toast('❌ Gagal memproses. Coba lagi!');
-    console.error(err);
-  }
+  window.location.href = 'bukti.html';
 }
 
 /* ── BUKTI ── */
