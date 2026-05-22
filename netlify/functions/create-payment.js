@@ -12,59 +12,40 @@ exports.handler = async (event) => {
 
   try {
     const body = JSON.parse(event.body);
-    const { buyerName, productCode, gameId, zoneId, itemName, price } = body;
+    const { buyerName, productCode, gameId, zoneId, itemName, price, trxId, tgl } = body;
 
-    const VIP_API_KEY   = process.env.VIP_API_KEY;
-    const VIP_API_ID    = process.env.VIP_API_ID;
-    const VIP_API_SIGN  = process.env.VIP_API_SIGN;
+    const VIP_API_KEY  = process.env.VIP_API_KEY;
+    const SUPABASE_URL = process.env.SUPABASE_URL;
+    const SUPABASE_KEY = process.env.SUPABASE_KEY;
 
-    // Buat signature MD5
-    const sign = crypto.createHash('md5')
-      .update(VIP_API_KEY + 'prod')
-      .digest('hex');
-
-    // Buat ID transaksi unik
-    const trxId = 'ASB-' + Date.now();
-
-    // Kirim order ke VIP Reseller
-    const vipRes = await fetch('https://vip-reseller.co.id/api/game-feature', {
+    // Simpan order ke Supabase
+    await fetch(`${SUPABASE_URL}/rest/v1/orders`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`
+      },
       body: JSON.stringify({
-        key:       VIP_API_KEY,
-        sign:      sign,
-        type:      'order',
-        service:   productCode,
-        data_no:   gameId,
-        data_zone: zoneId || '',
-        trx_id:    trxId
+        trx_id:       trxId,
+        tgl:          tgl,
+        user_name:    buyerName,
+        game:         itemName,
+        game_id:      gameId,
+        zone_id:      zoneId || '',
+        item:         itemName,
+        price:        'Rp ' + price.toLocaleString('id-ID'),
+        raw_price:    price,
+        product_code: productCode,
+        status:       'pending'
       })
     });
 
-    const vipData = await vipRes.json();
-    console.log('VIP Response:', JSON.stringify(vipData));
-
-    if (vipData.result === true) {
-      return {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify({
-          success: true,
-          message: 'Top up sedang diproses!',
-          trxId: trxId,
-          data: vipData.data
-        })
-      };
-    } else {
-      return {
-        statusCode: 200,
-        headers,
-        body: JSON.stringify({
-          success: false,
-          message: vipData.message || 'Gagal memproses order'
-        })
-      };
-    }
+    return {
+      statusCode: 200,
+      headers,
+      body: JSON.stringify({ success: true, message: 'Order tersimpan!' })
+    };
 
   } catch (err) {
     console.error('Error:', err);
