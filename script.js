@@ -147,7 +147,7 @@ function loadPayment() {
 }
 
 /* ── PROSES TOP UP OTOMATIS ── */
-async function sudahBayar() {
+ async function sudahBayar() {
   const trxId = genId();
   const now   = new Date();
   const tgl   = now.toLocaleDateString('id-ID',{day:'2-digit',month:'long',year:'numeric'})
@@ -160,29 +160,42 @@ async function sudahBayar() {
 
   const g = GAMES[state.game];
 
-  // Simpan order ke localStorage untuk panel admin
-  const orders = JSON.parse(localStorage.getItem('assabil_orders') || '[]');
-  orders.push({
-    trxId:       trxId,
-    tgl:         tgl,
-    user:        state.user,
-    game:        g.name,
-    gameId:      state.gameId,
-    zoneId:      state.zoneId || '',
-    item:        state.item.a.toLocaleString('id-ID') + ' ' + g.currency,
-    price:       fmt(state.item.p),
-    rawPrice:    state.item.p,
-    productCode: state.item.v,
-    status:      'pending'
-  });
-  localStorage.setItem('assabil_orders', JSON.stringify(orders));
+  const btn = document.getElementById('btn-paid');
+  btn.textContent = '⏳ Menyimpan order...';
+  btn.disabled = true;
 
-  sessionStorage.setItem('trxId', trxId);
-  sessionStorage.setItem('tgl', tgl);
-  sessionStorage.setItem('topupStatus', 'pending');
+  try {
+    // Simpan order ke Supabase via Netlify Function
+    const res = await fetch('/.netlify/functions/create-payment', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        buyerName:   state.user,
+        productCode: state.item.v,
+        gameId:      state.gameId,
+        zoneId:      state.zoneId || '',
+        itemName:    state.item.a + ' ' + g.currency,
+        price:       state.item.p,
+        trxId:       trxId,
+        tgl:         tgl
+      })
+    });
 
-  window.location.href = 'bukti.html';
-}
+    const data = await res.json();
+
+    sessionStorage.setItem('trxId', trxId);
+    sessionStorage.setItem('tgl', tgl);
+    sessionStorage.setItem('topupStatus', 'pending');
+
+    window.location.href = 'bukti.html';
+
+  } catch (err) {
+    btn.textContent = '✅ SAYA SUDAH BAYAR';
+    btn.disabled = false;
+    toast('❌ Gagal menyimpan order. Coba lagi!');
+    console.error(err);
+  }
+ }
 
 /* ── BUKTI ── */
 function loadBukti() {
