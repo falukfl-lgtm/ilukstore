@@ -148,6 +148,7 @@ function loadPayment() {
 
 /* ── PROSES TOP UP OTOMATIS ── */
  async function sudahBayar() {
+ async function sudahBayar() {
   const trxId = genId();
   const now   = new Date();
   const tgl   = now.toLocaleDateString('id-ID',{day:'2-digit',month:'long',year:'numeric'})
