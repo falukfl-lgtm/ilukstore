@@ -7,32 +7,31 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
-  .admin-login { max-width:380px; margin:80px auto; padding:32px; background:var(--card); border-radius:16px; border:1px solid var(--border); }
-  .admin-panel { max-width:600px; margin:24px auto; padding:16px; }
-  .order-card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:16px; margin-bottom:16px; }
-  .order-card .order-head { font-family:'Orbitron',monospace; font-size:11px; color:var(--red); letter-spacing:2px; margin-bottom:10px; }
-  .order-row { display:flex; justify-content:space-between; font-size:13px; margin-bottom:6px; }
-  .order-row .k { color:var(--muted); }
-  .order-row .v { color:var(--text); font-weight:600; }
-  .btn-approve { width:100%; background:linear-gradient(135deg,#1a7a1a,#0d5c0d); border:none; border-radius:8px; padding:12px; color:#fff; font-family:'Orbitron',monospace; font-size:11px; font-weight:700; letter-spacing:2px; cursor:pointer; margin-top:10px; }
-  .btn-approve:disabled { background:#2a2a3a; color:#6b6b8a; cursor:not-allowed; }
-  .btn-reject { width:100%; background:linear-gradient(135deg,#7a1a1a,#5c0d0d); border:none; border-radius:8px; padding:12px; color:#fff; font-family:'Orbitron',monospace; font-size:11px; font-weight:700; letter-spacing:2px; cursor:pointer; margin-top:6px; }
-  .status-badge { display:inline-block; padding:4px 10px; border-radius:20px; font-size:10px; font-weight:700; letter-spacing:1px; }
-  .status-pending { background:rgba(255,165,2,0.2); color:#ffa502; border:1px solid #ffa502; }
-  .status-success { background:rgba(46,213,115,0.2); color:#2ed573; border:1px solid #2ed573; }
-  .status-rejected { background:rgba(232,0,28,0.2); color:#e8001c; border:1px solid #e8001c; }
-  .empty-state { text-align:center; padding:40px; color:var(--muted); font-size:14px; }
-  .admin-topbar { display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; }
-  .btn-logout { background:none; border:1px solid var(--border); border-radius:8px; padding:8px 16px; color:var(--muted); font-size:12px; cursor:pointer; }
+  .admin-login{max-width:380px;margin:80px auto;padding:32px;background:var(--card);border-radius:16px;border:1px solid var(--border)}
+  .admin-panel{max-width:600px;margin:24px auto;padding:16px}
+  .order-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:16px}
+  .order-head{font-family:'Orbitron',monospace;font-size:11px;color:var(--red);letter-spacing:2px;margin-bottom:10px}
+  .order-row{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+  .order-row .k{color:var(--muted)}
+  .order-row .v{color:var(--text);font-weight:600}
+  .btn-approve{width:100%;background:linear-gradient(135deg,#1a7a1a,#0d5c0d);border:none;border-radius:8px;padding:12px;color:#fff;font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:2px;cursor:pointer;margin-top:10px}
+  .btn-approve:disabled{background:#2a2a3a;color:#6b6b8a;cursor:not-allowed}
+  .btn-reject{width:100%;background:linear-gradient(135deg,#7a1a1a,#5c0d0d);border:none;border-radius:8px;padding:12px;color:#fff;font-family:'Orbitron',monospace;font-size:11px;font-weight:700;letter-spacing:2px;cursor:pointer;margin-top:6px}
+  .status-pending{background:rgba(255,165,2,0.2);color:#ffa502;border:1px solid #ffa502;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700}
+  .status-success{background:rgba(46,213,115,0.2);color:#2ed573;border:1px solid #2ed573;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700}
+  .status-rejected{background:rgba(232,0,28,0.2);color:#e8001c;border:1px solid #e8001c;padding:4px 10px;border-radius:20px;font-size:10px;font-weight:700}
+  .empty-state{text-align:center;padding:40px;color:var(--muted);font-size:14px}
+  .admin-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
+  .btn-logout{background:none;border:1px solid var(--border);border-radius:8px;padding:8px 16px;color:var(--muted);font-size:12px;cursor:pointer}
+  .btn-refresh{background:none;border:1px solid var(--border);border-radius:8px;padding:8px 16px;color:var(--muted);font-size:12px;cursor:pointer;margin-left:8px}
 </style>
 </head>
 <body>
 
-<!-- LOGIN ADMIN -->
 <div id="admin-login" class="wrap">
   <div class="admin-login">
     <div style="text-align:center;margin-bottom:24px;">
-      <div class="brand" style="font-family:'Orbitron',monospace;font-size:20px;color:#e8001c;">ADMIN</div>
+      <div style="font-family:'Orbitron',monospace;font-size:20px;color:#e8001c;">ADMIN</div>
       <div style="font-size:12px;color:var(--muted);margin-top:4px;">Assabil Store Panel</div>
     </div>
     <label>Password Admin</label>
@@ -41,12 +40,14 @@
   </div>
 </div>
 
-<!-- PANEL ADMIN -->
 <div id="admin-panel" class="wrap" style="display:none;">
   <div class="admin-panel">
     <div class="admin-topbar">
       <div style="font-family:'Orbitron',monospace;font-size:16px;color:#e8001c;">📋 ORDER MASUK</div>
-      <button class="btn-logout" onclick="doLogout()">Keluar</button>
+      <div>
+        <button class="btn-refresh" onclick="loadOrders()">🔄 Refresh</button>
+        <button class="btn-logout" onclick="doLogout()">Keluar</button>
+      </div>
     </div>
     <div id="order-list"></div>
   </div>
@@ -55,8 +56,9 @@
 <div class="toast" id="toast"></div>
 <script src="script.js"></script>
 <script>
-const ADMIN_PASS = 'fatihganteng123Banget';
-const ORDERS_KEY = 'assabil_orders';
+const ADMIN_PASS   = 'fatihganteng123Banget';
+const SUPABASE_URL = 'https://boudupojxdhklqktrcqw.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_5rYvDDj-ZjvypnDIeUY3vA_IqNnMCQc';
 
 function doAdminLogin() {
   const pass = document.getElementById('inp-pass').value;
@@ -79,44 +81,53 @@ function doLogout() {
   document.getElementById('inp-pass').value = '';
 }
 
-function loadOrders() {
-  const orders = JSON.parse(localStorage.getItem(ORDERS_KEY) || '[]');
-  const list = document.getElementById('order-list');
+async function loadOrders() {
+  document.getElementById('order-list').innerHTML = '<div class="empty-state">⏳ Memuat order...</div>';
 
-  if (orders.length === 0) {
-    list.innerHTML = '<div class="empty-state">📭 Belum ada order masuk</div>';
-    return;
+  try {
+    const res = await fetch(`${SUPABASE_URL}/rest/v1/orders?order=created_at.desc`, {
+      headers: {
+        'apikey': SUPABASE_KEY,
+        'Authorization': `Bearer ${SUPABASE_KEY}`
+      }
+    });
+
+    const orders = await res.json();
+    const list = document.getElementById('order-list');
+
+    if (!orders.length) {
+      list.innerHTML = '<div class="empty-state">📭 Belum ada order masuk</div>';
+      return;
+    }
+
+    list.innerHTML = orders.map(o => `
+      <div class="order-card" id="card-${o.trx_id}">
+        <div class="order-head">🧾 ${o.trx_id}</div>
+        <div class="order-row"><span class="k">Tanggal</span><span class="v">${o.tgl}</span></div>
+        <div class="order-row"><span class="k">Pembeli</span><span class="v">${o.user_name}</span></div>
+        <div class="order-row"><span class="k">Game</span><span class="v">${o.game}</span></div>
+        <div class="order-row"><span class="k">ID Game</span><span class="v">${o.game_id}</span></div>
+        <div class="order-row"><span class="k">Item</span><span class="v">${o.item}</span></div>
+        <div class="order-row"><span class="k">Total</span><span class="v" style="color:#e8001c;">${o.price}</span></div>
+        <div class="order-row"><span class="k">Status</span><span class="v">
+          <span class="${o.status === 'pending' ? 'status-pending' : o.status === 'success' ? 'status-success' : 'status-rejected'}">
+            ${o.status === 'pending' ? '⏳ MENUNGGU' : o.status === 'success' ? '✅ DIPROSES' : '❌ DITOLAK'}
+          </span>
+        </span></div>
+        ${o.status === 'pending' ? `
+          <button class="btn-approve" onclick="approveOrder('${o.trx_id}','${o.product_code}','${o.game_id}','${o.zone_id}','${o.item}',${o.raw_price},'${o.user_name}')">✅ APPROVE & PROSES TOP UP</button>
+          <button class="btn-reject" onclick="rejectOrder('${o.trx_id}')">❌ TOLAK ORDER</button>
+        ` : ''}
+      </div>
+    `).join('');
+
+  } catch (err) {
+    document.getElementById('order-list').innerHTML = '<div class="empty-state">❌ Gagal memuat order</div>';
+    console.error(err);
   }
-
-  // Tampilkan order terbaru dulu
-  const sorted = orders.slice().reverse();
-  list.innerHTML = sorted.map((o, i) => `
-    <div class="order-card" id="card-${o.trxId}">
-      <div class="order-head">🧾 ${o.trxId}</div>
-      <div class="order-row"><span class="k">Tanggal</span><span class="v">${o.tgl}</span></div>
-      <div class="order-row"><span class="k">Pembeli</span><span class="v">${o.user}</span></div>
-      <div class="order-row"><span class="k">Game</span><span class="v">${o.game}</span></div>
-      <div class="order-row"><span class="k">ID Game</span><span class="v">${o.gameId}</span></div>
-      <div class="order-row"><span class="k">Item</span><span class="v">${o.item}</span></div>
-      <div class="order-row"><span class="k">Total</span><span class="v" style="color:#e8001c;">${o.price}</span></div>
-      <div class="order-row"><span class="k">Status</span><span class="v">
-        <span class="status-badge ${o.status === 'pending' ? 'status-pending' : o.status === 'success' ? 'status-success' : 'status-rejected'}">
-          ${o.status === 'pending' ? '⏳ MENUNGGU' : o.status === 'success' ? '✅ DIPROSES' : '❌ DITOLAK'}
-        </span>
-      </span></div>
-      ${o.status === 'pending' ? `
-        <button class="btn-approve" onclick="approveOrder('${o.trxId}')">✅ APPROVE & PROSES TOP UP</button>
-        <button class="btn-reject" onclick="rejectOrder('${o.trxId}')">❌ TOLAK ORDER</button>
-      ` : ''}
-    </div>
-  `).join('');
 }
 
-async function approveOrder(trxId) {
-  const orders = JSON.parse(localStorage.getItem(ORDERS_KEY) || '[]');
-  const order = orders.find(o => o.trxId === trxId);
-  if (!order) return;
-
+async function approveOrder(trxId, productCode, gameId, zoneId, itemName, rawPrice, userName) {
   const btn = document.querySelector(`#card-${trxId} .btn-approve`);
   btn.textContent = '⏳ Memproses...';
   btn.disabled = true;
@@ -126,20 +137,23 @@ async function approveOrder(trxId) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        buyerName:   order.user,
-        productCode: order.productCode,
-        gameId:      order.gameId,
-        zoneId:      order.zoneId || '',
-        itemName:    order.item,
-        price:       order.rawPrice
+        buyerName:   userName,
+        productCode: productCode,
+        gameId:      gameId,
+        zoneId:      zoneId || '',
+        itemName:    itemName,
+        price:       rawPrice,
+        trxId:       trxId,
+        tgl:         new Date().toLocaleDateString('id-ID')
       })
     });
 
     const data = await res.json();
 
     if (data.success) {
-      updateOrderStatus(trxId, 'success');
+      await updateStatus(trxId, 'success');
       toast('✅ Top up berhasil diproses!');
+      loadOrders();
     } else {
       btn.textContent = '✅ APPROVE & PROSES TOP UP';
       btn.disabled = false;
@@ -152,20 +166,23 @@ async function approveOrder(trxId) {
   }
 }
 
-function rejectOrder(trxId) {
+async function rejectOrder(trxId) {
   if (!confirm('Yakin tolak order ini?')) return;
-  updateOrderStatus(trxId, 'rejected');
+  await updateStatus(trxId, 'rejected');
   toast('❌ Order ditolak');
+  loadOrders();
 }
 
-function updateOrderStatus(trxId, status) {
-  const orders = JSON.parse(localStorage.getItem(ORDERS_KEY) || '[]');
-  const idx = orders.findIndex(o => o.trxId === trxId);
-  if (idx !== -1) {
-    orders[idx].status = status;
-    localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
-  }
-  loadOrders();
+async function updateStatus(trxId, status) {
+  await fetch(`${SUPABASE_URL}/rest/v1/orders?trx_id=eq.${trxId}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SUPABASE_KEY,
+      'Authorization': `Bearer ${SUPABASE_KEY}`
+    },
+    body: JSON.stringify({ status: status })
+  });
 }
 </script>
 </body>
